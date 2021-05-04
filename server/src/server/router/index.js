@@ -8,6 +8,7 @@ const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
 const upload = require('../utils/fileUpload');
 const authRouter = require('./auth');
+const transactionRouter = require('./transaction');
 const { checkAccessToken } = require('../middlewares/tokenMw');
 const router = express.Router();
 
@@ -25,6 +26,8 @@ router.post('/login', validators.validateLogin, userController.login);
 // router.post('/getUser', checkToken.checkAuth); 
 
 router.use(checkAccessToken);
+
+router.use("/transactions",transactionRouter)
 
 router.post(
   '/dataForContest',
