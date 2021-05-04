@@ -4,9 +4,12 @@ import {getContestsForCustomer, clearContestList, setNewCustomerFilter} from '..
 import CONSTANTS from '../../constants';
 import ContestsContainer from '../../components/ContestsContainer/ContestsContainer';
 import ContestBox from "../ContestBox/ContestBox";
+import {getContestsForCustomer, clearContestList} from 'actions/actionCreator';
 import styles from './CustomerDashboard.module.sass';
-import classNames from 'classnames';
-import TryAgain from '../../components/TryAgain/TryAgain';
+import ContestsContainer from 'components/ContestsContainer/ContestsContainer';
+import ContestBox from "components/ContestBox/ContestBox";
+import TryAgain from 'components/TryAgain/TryAgain';
+import CustomerContestFilter from 'components/ContestFilters/CustomerContestFilter';
 
 
 class CustomerDashboard extends React.Component {
@@ -63,28 +66,10 @@ class CustomerDashboard extends React.Component {
 
     render() {
         const {error, haveMore} = this.props;
-        const {customerFilter} = this.props;
         return (
             <div className={styles.mainContainer}>
-                <div className={styles.filterContainer}>
-                    <div onClick={() => this.props.newFilter(CONSTANTS.CONTEST_STATUS_ACTIVE)}
-                         className={classNames({
-                             [styles.activeFilter]: CONSTANTS.CONTEST_STATUS_ACTIVE === customerFilter,
-                             [styles.filter]: CONSTANTS.CONTEST_STATUS_ACTIVE !== customerFilter
-                         })}>Active Contests
-                    </div>
-                    <div onClick={() => this.props.newFilter(CONSTANTS.CONTEST_STATUS_FINISHED)}
-                         className={classNames({
-                             [styles.activeFilter]: CONSTANTS.CONTEST_STATUS_FINISHED === customerFilter,
-                             [styles.filter]: CONSTANTS.CONTEST_STATUS_FINISHED !== customerFilter
-                         })}>Completed contests
-                    </div>
-                    <div onClick={() => this.props.newFilter(CONSTANTS.CONTEST_STATUS_PENDING)}
-                         className={classNames({
-                             [styles.activeFilter]: CONSTANTS.CONTEST_STATUS_PENDING === customerFilter,
-                             [styles.filter]: CONSTANTS.CONTEST_STATUS_PENDING !== customerFilter
-                         })}>Inactive contests
-                    </div>
+                <div>
+                    <CustomerContestFilter/>
                 </div>
                 <div className={styles.contestsContainer}>
                     {
@@ -113,7 +98,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getContests: (data) => dispatch(getContestsForCustomer(data)),
         clearContestsList: () => dispatch(clearContestList()),
-        newFilter: (filter) => dispatch(setNewCustomerFilter(filter))
     }
 };
 
