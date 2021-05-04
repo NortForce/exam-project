@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import classNames from 'classnames';
+import _ from 'lodash';
 import {
     getContestById,
     setOfferStatus,
@@ -8,7 +11,6 @@ import {
     changeContestViewMode,
     changeShowImage
 } from '../../actions/actionCreator';
-import {connect} from 'react-redux';
 import Header from "../../components/Header/Header";
 import ContestSideBar from '../../components/ContestSideBar/ContestSideBar';
 import styles from './ContestPage.module.sass';
@@ -16,8 +18,6 @@ import OfferBox from '../../components/OfferBox/OfferBox';
 import OfferForm from '../../components/OfferForm/OfferForm';
 import CONSTANTS from '../../constants';
 import Brief from '../../components/Brief/Brief';
-import classNames from 'classnames';
-import isEqual from 'lodash/isEqual';
 import LightBox from 'react-image-lightbox';
 import Spinner from '../../components/Spinner/Spinner';
 import TryAgain from '../../components/TryAgain/TryAgain';
@@ -83,7 +83,7 @@ class ContestPage extends React.Component {
         const participants = [id, interlocutorId];
         participants.sort((participant1, participant2) => participant1 - participant2);
         for (let i = 0; i < messagesPreview.length; i++) {
-            if (isEqual(participants, messagesPreview[i].participants)) {
+            if (_.isEqual(participants, messagesPreview[i].participants)) {
                 return {
                     participants: messagesPreview[i].participants,
                     _id: messagesPreview[i]._id,
@@ -127,8 +127,13 @@ class ContestPage extends React.Component {
                                     <div className={styles.buttonsContainer}>
                         <span onClick={() => changeContestViewMode(true)}
                               className={classNames(styles.btn, {[styles.activeBtn]: isBrief})}>Brief</span>
-                                        <span onClick={() => changeContestViewMode(false)}
-                                              className={classNames(styles.btn, {[styles.activeBtn]: !isBrief})}>Offer</span>
+                                        {(!_.isEmpty(offers)|| role===CONSTANTS.CREATOR) && 
+                                            <span
+                                                onClick={() => changeContestViewMode(false)}
+                                                className={classNames(styles.btn, {[styles.activeBtn]: !isBrief})}>
+                                                Offer
+                                            </span>
+                                        }
                                     </div>
                                     {
                                         isBrief ?
