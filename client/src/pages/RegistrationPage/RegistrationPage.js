@@ -1,31 +1,21 @@
 import React from 'react';
-import Logo from '../../components/Logo';
-import RegistrationForm
-  from '../../components/RegistrationForm/RegistrationForm';
-import styles from './RegistrationPage.module.sass';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { clearErrorSignUpAndLogin } from '../../actions/actionCreator';
-import CONSTANTS from '../../constants';
+import RegistrationForm from 'components/RegistrationForm/RegistrationForm';
+import { clearErrorSignUpAndLogin } from 'actions/actionCreator';
+import AuthPagesHeader from 'components/AuthPagesHeader/AuthPagesHeader';
+import styles from './RegistrationPage.module.scss';
 
 const RegistrationPage = (props) => {
   props.clearError();
 
-  const changeRoute = () => {
-    props.history.replace('/');
-  };
+  document.title="Signup | Squadhelp";
+
 
   return (
     <div className={ styles.signUpPage }>
       <div className={ styles.signUpContainer }>
-        <div className={ styles.headerSignUpPage }>
-          <Logo src={ `${ CONSTANTS.STATIC_IMAGES_PATH }logo.png` }/>
-          <div className={ styles.linkLoginContainer }>
-            <Link to='/login'
-                  style={ {textDecoration: 'none'} }><span>Login</span></Link>
-          </div>
-        </div>
-        <RegistrationForm changeRoute={ changeRoute }/>
+        <AuthPagesHeader path="/login" name="Login" />
+        <RegistrationForm />
       </div>
       <div className={ styles.footer }>
         <div className={ styles.articlesMainContainer }>
