@@ -18,7 +18,8 @@ export default function (state = initialState, action) {
         case ACTION.AUTH_ACTION_SUCCESS: {
             return {
                 isFetching: false,
-                error: null
+                error: null,
+                data: action.user
             }
         }
         case ACTION.AUTH_ACTION_ERROR: {

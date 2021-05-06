@@ -21,9 +21,9 @@ export  function* loginSaga(action){
 export  function* registerSaga(action){
     yield put({type: ACTION.AUTH_ACTION_REQUEST});
     try{
-        yield  restController.registerRequest(action.data);
+        const {data:{data:{user}}} =yield  restController.registerRequest(action.data);
         history.replace('/');
-        yield put({type: ACTION.AUTH_ACTION_SUCCESS});
+        yield put({type: ACTION.AUTH_ACTION_SUCCESS, user});
     }
     catch (e) {
         yield put({type: ACTION.AUTH_ACTION_ERROR, error: e.response});
