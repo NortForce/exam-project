@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {
     getContestsForCreative,
@@ -14,6 +14,7 @@ import queryString from 'query-string';
 import classNames from 'classnames';
 import isEqual from 'lodash/isEqual';
 import TryAgain from '../../components/TryAgain/TryAgain';
+import CreatorContestFilter from 'components/ContestFilters/CreatorContestFilter';
 
 
 const types = ['', 'name,tagline,logo', 'name', 'tagline', 'logo', 'name,tagline', 'logo,tagline', 'name,logo'];
@@ -151,42 +152,7 @@ class CreatorDashboard extends React.Component {
         const {isFetching} = this.props.dataForContest;
         return (
             <div className={styles.mainContainer}>
-                <div className={styles.filterContainer}>
-                    <span className={styles.headerFilter}>Filter Results</span>
-                    <div className={styles.inputsContainer}>
-                        <div
-                            onClick={() => this.changePredicate({name: 'ownEntries', value: !creatorFilter.ownEntries})}
-                            className={classNames(styles.myEntries, {[styles.activeMyEntries]: creatorFilter.ownEntries})}>My
-                            Entries
-                        </div>
-                        <div className={styles.inputContainer}>
-                            <span>By contest type</span>
-                            {this.renderSelectType()}
-                        </div>
-                        <div className={styles.inputContainer}>
-                            <span>By contest ID</span>
-                            <input type="text" onChange={({target}) => this.changePredicate({
-                                name: 'contestId',
-                                value: target.value
-                            })} name='contestId'
-                                   value={creatorFilter.contestId} className={styles.input}/>
-                        </div>
-                        {!isFetching && <div className={styles.inputContainer}>
-                            <span>By industry</span>
-                            {this.renderIndustryType()}
-                        </div>}
-                        <div className={styles.inputContainer}>
-                            <span>By amount award</span>
-                            <select onChange={({target}) => this.changePredicate({
-                                name: 'awardSort',
-                                value: target.value
-                            })} value={creatorFilter.awardSort} className={styles.input}>
-                                <option value='desc'>Descending</option>
-                                <option value='asc'>Ascending</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                <CreatorContestFilter />
                 {
                     error ?
                         <div className={styles.messageContainer}>
