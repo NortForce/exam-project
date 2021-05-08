@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import styles from './ContestContainer.module.sass';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../Spinner/Spinner';
 
 
 class ContestsContainer extends React.Component {
@@ -26,12 +26,14 @@ class ContestsContainer extends React.Component {
     render() {
         const {isFetching} = this.props;
         if (!isFetching && this.props.children.length === 0) {
-            return <div className={styles.notFound}>Nothing not found</div>;
+            return (<section className={styles.notFound}>
+                <h2>There are no currently contests of searched type</h2>
+            </section>);
         } else return (
-            <div>
+            <section>
                 {this.props.children}
                 {isFetching && <div className={styles.spinnerContainer}><Spinner/></div>}
-            </div>
+            </section>
         )
     }
 
