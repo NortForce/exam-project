@@ -1,0 +1,62 @@
+%linkReset {
+  text-decoration: none;
+  color: inherit;
+
+  &:active, &:focus { 
+    outline: none; 
+    -moz-outline-style: none;
+  }
+}
+
+%btnReset {
+  background: transparent;
+  border: none;
+}
+
+%authInputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+%accountSidebarBtn {
+  margin-top: 15px;
+  display: inline-block;
+  align-self: stretch;
+  text-align: center;
+  color: #46568a;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 10px;
+
+  @media(max-width: 1000px) {
+    height: 20px;
+    margin: 0 5px;
+  }
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #eefaea;
+  }
+}
+
+%accountSidebarBtnPressed {
+  @extend %accountSidebarBtn;
+
+  transition: 0.5s background-color;  
+  color: white;
+  background-color: #4e618d;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #4e618d;
+  }
+
+}
