@@ -1,0 +1,35 @@
+.transactionTable {
+  font-size: 20px;
+  background-color: #f9fafb;
+  text-align: center;
+  border-radius: 10px;
+  border-collapse: inherit;
+  border-spacing: 0px;
+  & td,
+  & th {
+    padding: 10px;
+    border: 1px solid #ebebeb;
+    color: #46568a;
+  }
+  
+    & th:first-child {
+      border-radius: 10px 0 0 0;
+    }
+    & th:last-child {
+      border-radius: 0 10px 0 0;
+    }
+    & tr:last-child td:first-child {
+      border-radius: 0 0 0 10px;
+    }
+    & tr:last-child td:last-child {
+      border-radius: 0 0 10px 0;
+    }
+    
+  .income {
+    color: green;
+  }
+
+  .consumption {
+    color: red;
+  }
+}

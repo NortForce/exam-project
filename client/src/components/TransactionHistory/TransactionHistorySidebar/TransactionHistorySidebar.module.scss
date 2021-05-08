@@ -1,0 +1,27 @@
+@import 'common/styles/_template.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 250px;
+  // height: 200px;
+  padding: 30px 20px 20px;
+  margin-right: 50px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.1);
+  background-color: white;
+
+  @media (max-width: 1000px) {
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 10px 5px 5px;
+    margin-right: 0;
+    // height: 80px;
+  }
+}
+
+.toSidebarLink {
+  @extend %linkReset;
+  @extend %accountSidebarBtn;
+}

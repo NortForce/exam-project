@@ -18,7 +18,7 @@ import ContestCreationPage from './pages/ContestCreation/ContestCreationPage';
 import CONSTANTS from './constants';
 import browserHistory from './browserHistory';
 import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatContainer';
-
+import TransactionHistoryPage from "./pages/TransactionHistoryPage/TransactionHistoryPage";
 
 
 class App extends Component {
@@ -58,6 +58,8 @@ class App extends Component {
                                title: 'LOGO'
                            })}/>
                     <Route exact path='/dashboard' component={PrivateHoc(Dashboard)}/>
+                    <Route exact path='/dashboard/transactionHistory' 
+                        component={PrivateHoc(TransactionHistoryPage)}/>
                     <Route exact path='/contest/:id' component={PrivateHoc(ContestPage)}/>
                     <Route exact path='/account' component={PrivateHoc(UserProfile)}/>
                     <Route component={NotFound}/>
