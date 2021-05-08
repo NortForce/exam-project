@@ -1,7 +1,6 @@
 import React from 'react';
 import {getUserAction} from '../../actions/actionCreator';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 
 
@@ -18,13 +17,13 @@ const PrivateHoc = (Component, props) => {
     };
 
     class Hoc extends React.Component {
-        componentDidMount() {
-            if (!this.props.data) {
-                this.props.getUser(this.props.history.replace);
-            }
-        }
-
+        
         render() {
+            if (!this.props.data) {
+                this.props.history.replace('/login');
+                return null;
+            }
+
             return (<>
                 {this.props.isFetching ? <Spinner/> :
                     <Component history={this.props.history} match={this.props.match} {...props}/>}
