@@ -25,10 +25,12 @@ import {
     removeChatFromCatalogSaga,
     changeCatalogName
 } from './chatSagas';
+import {getUserTxHistorySaga} from './userTxHistorySaga';
 
 function* rootSaga() {
     yield  takeLatest(ACTION.AUTH_ACTION_REGISTER, registerSaga);
     yield  takeLatest(ACTION.AUTH_ACTION_LOGIN, loginSaga);
+    yield  takeEvery(ACTION.GET_USER_TX_HISTORY_REQUEST, getUserTxHistorySaga);
     // yield  takeEvery(ACTION.GET_USER_ACTION, privateSaga);
     yield  takeEvery(ACTION.GET_DATA_FOR_CONTEST_ACTION, dataForContestSaga);
     yield  takeLatest(ACTION.PAYMENT_ACTION, paymentSaga);

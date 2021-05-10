@@ -15,6 +15,27 @@ export const authActionRegister = (data) => {
     }
 };
 
+export const getUserTxHistoryRequest = (data) => {
+    return {
+        type: ACTION.GET_USER_TX_HISTORY_REQUEST,
+        payload: {data}
+    }
+}
+
+export const getUserTxHistorySuccess = (data) => {
+    return {
+        type: ACTION.GET_USER_TX_HISTORY_SUCCESS,
+        payload: {data}
+    }
+}
+
+export const getUserTxHistoryError = (error) => {
+    return {
+        type: ACTION.GET_USER_TX_HISTORY_ERROR,
+        payload: {error}
+    }
+}
+
 export const clearErrorSignUpAndLogin = () => {
     return {
         type: ACTION.AUTH_ACTION_CLEAR_ERROR

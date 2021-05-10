@@ -9,23 +9,23 @@ const TransactionTable = ({tableData}) => {
       <thead>
         <tr>
           <th>№</th>
-          <th>Type</th>
+          <th>Operation Type</th>
           <th>Amount</th>
         </tr>
       </thead>
       <tbody>
-        {tableData.map(transaction => (
+        {tableData.map((transaction, tableId) => (
           <tr key={transaction.id}>
-            <td>{transaction.id}</td>
-            <td>{transaction.type}</td>
+            <td>{tableId+1}</td>
+            <td>{transaction.operationType}</td>
             <td
               
             >
               <span className={classNames({
-                [styles.income]: transaction.type === 'income',
-                [styles.consumption]: transaction.type === 'spend'
+                [styles.income]: transaction.operationType === 'income',
+                [styles.consumption]: transaction.operationType === 'consumption'
               })}>
-                {transaction.amount}
+                {transaction.sum}
               </span> $
             </td>
           </tr>

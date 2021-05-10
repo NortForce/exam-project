@@ -43,6 +43,8 @@ export const getContestById = (data) => {
     });
 };
 
+export const getUserTxHistory = () => httpClient.get(`transactions/full`);
+
 
 
 

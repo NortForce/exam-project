@@ -10,12 +10,14 @@ import getContestByIdReducer from './getContestByIdReducer';
 import updateContestReducer from './updateContestReducer';
 import chatReducer from './chatReducer';
 import userProfileReducer from './userProfileReducer';
+import transactionHistoryReducer from './transactionHistoryReducer';
 
 
 
 const appReducer=combineReducers({
    form: formReducer,
    auth: authReducer, // auth
+   txHistory: transactionHistoryReducer,
    dataForContest: dataForContestReducer,
    payment: payReducer,
    contestByIdStore: getContestByIdReducer,
