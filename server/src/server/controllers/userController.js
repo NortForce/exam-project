@@ -139,6 +139,13 @@ module.exports.payment = async (req, res, next) => {
       });
     });
     await db.Contest.bulkCreate(req.body.contests, transaction);
+
+    await db.TransactionHistory.create({
+      userId: req.tokenData.userId,
+      operationType: "consumption",
+      sum: req.body.price
+    }, {returning: false, silent: true})
+
     transaction.commit();
     res.send();
   } catch (err) {
@@ -196,6 +203,13 @@ module.exports.cashout = async (req, res, next) => {
       }
     },
     transaction);
+
+    await db.TransactionHistory.create({
+      userId: req.tokenData.userId,
+      operationType: "income",
+      sum: req.body.sum
+    }, {returning: false, silent: true})
+
     transaction.commit();
     res.send({ balance: updatedUser.balance });
   } catch (err) {
