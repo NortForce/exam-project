@@ -1,6 +1,6 @@
 const createHttpError = require('http-errors');
 const { isEmpty } = require('lodash');
-const { TransactionHistory } = require('../models');
+const { User, TransactionHistory, sequelize } = require('../models');
 
 module.exports.getUserTransactions = async (req, res, next) => {
   try {
@@ -23,23 +23,23 @@ module.exports.getUserTransactions = async (req, res, next) => {
 
 module.exports.getUserMoneyMovement = async (req, res, next) => {
   try {
-    const { tokenData } = req;
+    const { tokenData:{userId} } = req;
 
-    const userIncome = await TransactionHistory.aggregate("sum", "sum", {
-      where: {
-        userId: tokenData.userId,
-        operationType: "income"
+    const user = await User.findByPk(userId);
+
+    if(!user) {
+      return next(createHttpError(404, 'User not found'));
       }
-    });
 
-    const userConsumption = await TransactionHistory.aggregate("sum", "sum", {
-      where: {
-        userId: tokenData.userId,
-        operationType: "consumption"
+    const income = await user.getTransactionHistories({
+      group: 'operationType',
+      attributes: {
+        exclude:['createdAt','updatedAt', 'id', 'userId', 'sum'],
+        include: [[sequelize.fn('sum', sequelize.col('sum')), 'total']],
       }
-    });
+    })
 
-    res.send({data: {INCOME: userIncome, CONSUMPTION: userConsumption}})
+    res.send({data: income})
   } catch (error) {
     next(error);
   }

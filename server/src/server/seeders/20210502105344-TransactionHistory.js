@@ -4,16 +4,28 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert("transactionHistory", [
       {
-        operation_type: "income",
+        operationType: "income",
         sum: 1500,
-        user_id: 1,
-        created_at: new Date()
+        userId: 1,
+        createdAt: new Date()
       },
       {
-        operation_type: "consumption",
+        operationType: "consumption",
         sum: 250,
-        user_id: 1,
-        created_at: new Date()
+        userId: 1,
+        createdAt: new Date()
+      },
+      {
+        operationType: "income",
+        sum: 100,
+        userId: 1,
+        createdAt: new Date()
+      },
+      {
+        operationType: "consumption",
+        sum: 500,
+        userId: 1,
+        createdAt: new Date()
       }
     ],
     {})
