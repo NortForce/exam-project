@@ -136,8 +136,6 @@ module.exports.setNewOffer = async (req, res, next) => {
       }
     });
 
-    console.log(User);
-    console.log(user);
     res.send(Object.assign({}, result, { User }));
   } catch (e) {
     return next(new ServerError());
