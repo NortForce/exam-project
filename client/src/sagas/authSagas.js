@@ -49,5 +49,5 @@ export function * refreshSaga (action) {
 }
 export function * logoutSaga (action) {
   yield Api.auth.logout()
-  put({type: ACTION.CLEAR_STORE})
+  yield put({type: ACTION.CLEAR_STORE})
 }
