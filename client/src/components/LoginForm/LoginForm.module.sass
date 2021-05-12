@@ -1,3 +1,5 @@
+@import "common/styles/_template.scss"
+
 .loginForm
   width: 600px
   display: flex
@@ -29,12 +31,8 @@
     color: white
 
   .inputContainer
-    display: flex
-    flex-direction: column
-    justify-content: center
+    @extend %authInputContainer
     align-self: stretch
-    margin-right: 20px
-    margin-left: 20px
 
     .fieldWarning
       font-size: 15px
