@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from "classnames";
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {setNewCustomerFilter} from 'actions/actionCreator';
 import CONSTANTS from 'constants.js';
 import styles from "./CustomerContestFilter.module.scss";
@@ -52,12 +51,6 @@ const CustomerContestFilter = (props) => {
       >
         Inactive contests
       </button>
-
-      <Link to="/dashboard/transactionHistory" 
-        className={styles.transactionHistoryBtn}
-      >
-        View your transaction history
-      </Link>
     </section>
   )
 }

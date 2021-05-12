@@ -112,7 +112,7 @@ function App () {
           component={UserProfile}
         />
         <PrivateRoute
-          roles={['customer', 'creator']}
+          roles={['creator']}
           exact
           path='/dashboard/transactionHistory'
           component={TransactionHistoryPage}
