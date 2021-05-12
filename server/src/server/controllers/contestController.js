@@ -126,7 +126,18 @@ module.exports.setNewOffer = async (req, res, next) => {
     controller
       .getNotificationController()
       .emitEntryCreated(req.body.customerId);
-    const User = Object.assign({}, req.tokenData, { id: req.tokenData.userId });
+
+    const User = await db.User.findOne({
+      where: {
+        id: req.tokenData.userId
+      },
+      attributes: {
+        extclude: ['passwordHash']
+      }
+    });
+
+    console.log(User);
+    console.log(user);
     res.send(Object.assign({}, result, { User }));
   } catch (e) {
     return next(new ServerError());
@@ -190,6 +201,13 @@ const resolveOffer = async (
     },
     transaction
   );
+
+  await db.TransactionHistory.create({
+    userId: creatorId,
+    operationType: "income",
+    sum: finishedContest.prize
+  }, {returning: false, silent: true})
+
   transaction.commit();
   const arrayRoomsId = [];
   updatedOffers.forEach(offer => {
