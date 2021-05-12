@@ -1,0 +1,49 @@
+@import 'common/styles/_colors.scss';
+
+.errorPopup {
+  z-index: 10;
+  position: absolute;
+  top: 95%;
+  left: 0%;
+  right: 0%;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: $color-text-error;
+  background-color: $color-background-error;
+  border: 2px solid $color-border-error;
+  margin-bottom: 15px;
+  padding: 10px 5px;
+  border-radius: 10px;
+  text-align: center;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    z-index: 9;
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-right-width: 10px;
+    border-left-width: 10px;
+    border-bottom: 10px solid $color-border-error;
+  }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    z-index: 10;
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-right-width: 10px;
+    border-left-width: 10px;
+    border-bottom: 10px solid $color-background-error;
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import styles from './FormInput.module.scss';
 
 const FormInput = (props) => {
 
@@ -15,7 +16,7 @@ const FormInput = (props) => {
       <input { ...input } placeholder={ label } type={ type }
              className={ inputClassName }/>
       { classes.warning && ( touched &&
-        ( error && <span className={ classes.warning }>{ error }</span> ) ) }
+        ( error && <div className={ styles.errorPopup }>{ error }</div> ) ) }
     </div>
   );
 };
