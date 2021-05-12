@@ -1,6 +1,6 @@
 import {put} from 'redux-saga/effects';
 import * as ACTION from 'actions/actionCreator';
-import * as restController from 'api/rest/restController';
+import * as restController from 'api/http/restController';
 
 export function * getUserTxHistorySaga (action) {
   try {

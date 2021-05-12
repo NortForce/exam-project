@@ -19,8 +19,11 @@ module.exports.checkAccessToken = async (req, res, next) => {
       headers: { authorization }, // Bearer asejnvr.srgrgbd.rfgdrgb
     } = req;
     if (authorization) {
-      const [, token] = authorization.split(' ');
-      console.log('token=>>>>',token);
+      const [type, token] = authorization.split(' ');
+      if(type !== 'Bearer'){
+        res.set('WWW-Authenticate', 'Bearer realm="squadhelp.com"')
+        return res.status(401).end()
+      }
       req.tokenData = await JwtService.verifyAccessToken(token);
       return next();
     }
