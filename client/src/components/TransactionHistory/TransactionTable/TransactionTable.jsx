@@ -18,13 +18,8 @@ const TransactionTable = ({tableData}) => {
           <tr key={transaction.id}>
             <td>{tableId+1}</td>
             <td>{transaction.operationType}</td>
-            <td
-              
-            >
-              <span className={classNames({
-                [styles.income]: transaction.operationType === 'income',
-                [styles.consumption]: transaction.operationType === 'consumption'
-              })}>
+            <td>
+              <span className={classNames( styles[transaction.operationType])}>
                 {transaction.sum}
               </span> $
             </td>

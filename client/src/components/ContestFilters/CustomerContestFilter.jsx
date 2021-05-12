@@ -16,38 +16,28 @@ const CustomerContestFilter = (props) => {
   const isSelectedFinishedFilter = CONSTANTS.CONTEST_STATUS_FINISHED === customerFilter;
   const isSelectedPendingFilter = CONSTANTS.CONTEST_STATUS_PENDING === customerFilter;
 
-  const activeFilterStyles = classNames({
-    [styles.activeFilter]: isSelectedActiveFilter,
-    [styles.filter]: !isSelectedActiveFilter
-  });
-
-  const finishedFilterStyles = classNames({
-    [styles.activeFilter]: isSelectedFinishedFilter,
-    [styles.filter]: !isSelectedFinishedFilter
-  });
-
-  const pendingFilterStyles = classNames({
-    [styles.activeFilter]: isSelectedPendingFilter,
-    [styles.filter]: !isSelectedPendingFilter
+  const filterStyles = (isSelectedFilter) => classNames({
+    [styles.activeFilter]: isSelectedFilter,
+    [styles.filter]: !isSelectedFilter
   });
   
   return (
     <section className={styles.filterContainer}>
       <button
         onClick={() => setCustomerFilter(CONSTANTS.CONTEST_STATUS_ACTIVE)}
-        className={activeFilterStyles}
+        className={filterStyles(isSelectedActiveFilter)}
       >
         Active Contests
       </button>
       <button
         onClick={() => setCustomerFilter(CONSTANTS.CONTEST_STATUS_FINISHED)}
-        className={finishedFilterStyles}
+        className={filterStyles(isSelectedFinishedFilter)}
       >
         Completed contests
       </button>
       <button
         onClick={() => setCustomerFilter(CONSTANTS.CONTEST_STATUS_PENDING)}
-        className={pendingFilterStyles}
+        className={filterStyles(isSelectedPendingFilter)}
       >
         Inactive contests
       </button>
