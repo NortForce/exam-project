@@ -14,9 +14,9 @@ const TransactionTable = ({tableData}) => {
         </tr>
       </thead>
       <tbody>
-        {tableData.map((transaction, tableId) => (
+        {tableData.map(transaction => (
           <tr key={transaction.id}>
-            <td>{tableId+1}</td>
+            <td>{transaction.id}</td>
             <td>{transaction.operationType}</td>
             <td>
               <span className={classNames( styles[transaction.operationType])}>

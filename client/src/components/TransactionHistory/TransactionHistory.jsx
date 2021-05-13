@@ -28,19 +28,19 @@ const TransactionHistory = (props) => {
       <section className={styles.infoPanel}>
         <h2 className={styles.heading}>Transaction history</h2>
         { isFetching ? <Spinner/>
-          : error ? <p className={styles.message}>Error happened</p>
             : <div>
-                <TransactionTable tableData={userTransactionHistory} />
-                <div className={styles.totalContainer}>
-                  <div>Total income:&nbsp;
-                    <span className={styles.income}>{aggregatedMoneyMovement.income || 0}</span>$
-                  </div>
-                  <div>Total consumption:&nbsp;
-                  <span className={styles.consumption}>{aggregatedMoneyMovement.consumption || 0}</span>$
-                  </div>
+              <TransactionTable tableData={userTransactionHistory} />
+              <div className={styles.totalContainer}>
+                <div>Total income:&nbsp;
+                  <span className={styles.income}>{aggregatedMoneyMovement.income || 0}</span>$
+                </div>
+                <div>Total consumption:&nbsp;
+                <span className={styles.consumption}>{aggregatedMoneyMovement.consumption || 0}</span>$
                 </div>
               </div>
+            </div>
         }
+        { error ? <p className={styles.message}>Error happened</p>: null}
       </section>
     </main>
   );
